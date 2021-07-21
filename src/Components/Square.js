@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-function Square({ value, onClick }) {
-  return (
-    <button className="square" onClick={null}>
-      {value}
-    </button>
-  );
-}
+// // function Square({ value, onClick }) {
+// //   return (
+// //     <button className="square" onClick={null}>
+// //       {value}
+// //     </button>
+// //   );
+// // }
 
-export default Square;
+// export default Square;

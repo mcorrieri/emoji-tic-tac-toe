@@ -1,10 +1,30 @@
-import Square from "./Square";
+import React, { useState } from "react";
 
-function Game({ value, onClick }) {
-  function renderSquare(i) {
-    return <Square value={i} onClick={null} />;
+function Game() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [nextTurn, setNextTurn] = useState(true);
+
+  function Square({ value, onClick }) {
+    return (
+      <button className="square" onClick={onClick}>
+        {value}
+      </button>
+    );
   }
 
+  function renderSquare(i) {
+    return (
+      <Square
+        value={squares[i]}
+        onClick={() => {
+          const nextSquares = squares.slice();
+          nextSquares[i] = nextTurn ? "X" : "O";
+          setSquares(nextSquares);
+          setNextTurn(!nextTurn);
+        }}
+      />
+    );
+  }
   return (
     <div className="container">
       <div className="game">
