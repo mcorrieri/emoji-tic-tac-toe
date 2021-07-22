@@ -5,6 +5,7 @@ function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [nextTurn, setNextTurn] = useState(true);
   const winner = whoWins(squares);
+  const nextSymbol = nextTurn ? "X" : "O";
 
   function Square({ value, onClick }) {
     return (
@@ -19,10 +20,32 @@ function Game() {
       <Square
         value={squares[i]}
         onClick={() => {
+          if (squares[i] != null || winner != null) {
+            return;
+          }
           const nextSquares = squares.slice();
-          nextSquares[i] = nextTurn ? "X" : "O";
+          nextSquares[i] = nextSymbol;
           setSquares(nextSquares);
           setNextTurn(!nextTurn);
+        }}
+      />
+    );
+  }
+
+  function Restart({ onClick }) {
+    return (
+      <button className="restart" onClick={onClick}>
+        Reset Game
+      </button>
+    );
+  }
+
+  function renderRestartButton() {
+    return (
+      <Restart
+        onClick={() => {
+          setSquares(Array(9).fill(null));
+          setNextTurn(true);
         }}
       />
     );
@@ -48,19 +71,16 @@ function Game() {
       ) {
         return squares[a];
       }
-      {
-        return null;
-      }
     }
   }
 
   function isBoardFull(squares) {
-    for (let i = 0; i < squares.length; i++)
+    for (let i = 0; i < squares.length; i++) {
       if (squares[i] == null) {
         return false;
-      } else {
-        return true;
       }
+    }
+    return true;
   }
 
   function findWinner() {
@@ -69,7 +89,7 @@ function Game() {
     } else if (isBoardFull(squares)) {
       return "DRAW";
     } else {
-      return "Next player: " + (nextTurn ? "X" : "O");
+      return "Next player: " + nextSymbol;
     }
   }
 
@@ -94,6 +114,7 @@ function Game() {
           </div>
         </div>
         <div className="game-info">{findWinner()}</div>
+        <div className="restart-button">{renderRestartButton()}</div>
       </div>
     </div>
   );
