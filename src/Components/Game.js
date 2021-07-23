@@ -111,18 +111,17 @@ function Game() {
 
   return (
     <div>
-      <div className="player1-dropdown">
-        <div>
+      <div className="player1-dropdown"></div>
+      <div className="player2-dropdown"></div>
+      <div className="container">
+        <div className="picker">
           {chosenEmoji ? (
-            <span>You chose: {chosenEmoji.emoji}</span>
+            <span>Player 1 chose: {chosenEmoji.emoji}</span>
           ) : (
             <span>No emoji Chosen</span>
           )}
           <Picker onEmojiClick={onEmojiClick} />
         </div>
-      </div>
-      <div className="player2-dropdown"></div>
-      <div className="container">
         <div className="game">
           <div className="game-board">
             <div className="board-row">
