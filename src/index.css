@@ -102,12 +102,18 @@ ul {
 
 .player1-dropdown {
   color: #e36e08;
+  margin-right: 40px;
 }
 
 .player2-dropdown {
   color: #e36e08;
+  margin-left: 40px;
 }
 
 .picker {
   padding-right: 50px;
+}
+
+.player-select {
+  display: flex;
 }

@@ -1,18 +1,39 @@
 import { func } from "assert-plus";
 import React, { useState } from "react";
 import { Dropdown } from "semantic-ui-react";
-import Picker from "emoji-picker-react";
 
 function Game() {
+  const emojiList = [
+    "💀",
+    "🐷",
+    "😀",
+    "😉",
+    "😏",
+    "🤮",
+    "🤠",
+    "💩",
+    "👻",
+    "👾",
+    "🤌",
+    "🖕",
+    "👶",
+    "👨‍🦰",
+    "👴",
+    "👩‍🍳",
+    "🧑‍🚀",
+    "🧛",
+    "🧑‍🦼",
+    "🦧",
+    "🦊",
+    "🐖",
+    "☃️",
+  ];
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [nextTurn, setNextTurn] = useState(true);
   const winner = whoWins(squares);
-  const nextSymbol = nextTurn ? "X" : "O";
-  const [chosenEmoji, setChosenEmoji] = useState(null);
-
-  const onEmojiClick = (event, emojiObj) => {
-    setChosenEmoji(emojiObj);
-  };
+  const emoji1 = emojiList[0];
+  const emoji2 = emojiList[1];
+  const nextSymbol = nextTurn ? emoji1 : emoji2;
 
   function Square({ value, onClick }) {
     return (
@@ -92,7 +113,7 @@ function Game() {
 
   function findWinner() {
     if (winner) {
-      return "Winner" + winner;
+      return "Winner: " + winner;
     } else if (isBoardFull(squares)) {
       return "DRAW";
     } else {
@@ -100,27 +121,16 @@ function Game() {
     }
   }
 
-  // const DropdownExampleSelection = () => (
-  //   <Dropdown
-  //     placeholder="Select Friend"
-  //     fluid
-  //     selection
-  //     options={emojiOptions}
-  //   />
-  // );
-
   return (
     <div>
-      <div className="player1-dropdown"></div>
-      <div className="player2-dropdown"></div>
       <div className="container">
-        <div className="picker">
-          {chosenEmoji ? (
-            <span>Player 1 chose: {chosenEmoji.emoji}</span>
-          ) : (
-            <span>No emoji Chosen</span>
-          )}
-          <Picker onEmojiClick={onEmojiClick} />
+        <div className="player-select">
+          <div className="player1-dropdown">
+            <h2>Player 1</h2>
+            <select>
+              <option>👻</option>
+            </select>
+          </div>
         </div>
         <div className="game">
           <div className="game-board">
@@ -142,6 +152,12 @@ function Game() {
           </div>
           <div className="game-info">{findWinner()}</div>
           <div className="restart-button">{renderRestartButton()}</div>
+        </div>
+        <div className="player2-dropdown">
+          <h2>Player 2</h2>
+          <select>
+            <option>💩</option>
+          </select>
         </div>
       </div>
     </div>
