@@ -1,6 +1,4 @@
-import { func } from "assert-plus";
 import React, { useState } from "react";
-import { Dropdown } from "semantic-ui-react";
 
 function Game() {
   const emojiList = [
@@ -31,8 +29,8 @@ function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [nextTurn, setNextTurn] = useState(true);
   const winner = whoWins(squares);
-  const emoji1 = emojiList[0];
-  const emoji2 = emojiList[1];
+  const [emoji1, setEmoji1] = useState("");
+  const [emoji2, setEmoji2] = useState("");
   const nextSymbol = nextTurn ? emoji1 : emoji2;
 
   function Square({ value, onClick }) {
@@ -127,8 +125,19 @@ function Game() {
         <div className="player-select">
           <div className="player1-dropdown">
             <h2>Player 1</h2>
-            <select>
+            <select onChange={(e) => setEmoji1(e.target.value)}>
               <option>👻</option>
+              <option>💀</option>
+              <option>🐷</option>
+              <option>😀</option>
+              <option>😉</option>
+              <option>😏</option>
+              <option>🤮</option>
+              <option>🤠</option>
+              <option>💩</option>
+              <option>👻</option>
+              <option>👾</option>
+              <option>🤌</option>
             </select>
           </div>
         </div>
@@ -155,8 +164,19 @@ function Game() {
         </div>
         <div className="player2-dropdown">
           <h2>Player 2</h2>
-          <select>
-            <option>💩</option>
+          <select onChange={(e) => setEmoji2(e.target.value)}>
+            <option value="👨‍🦰">👨‍🦰</option>
+            <option value="👴">👴</option>
+            <option value="👩‍🍳">👩‍🍳</option>
+            <option value="🧑‍🚀">🧑‍🚀</option>
+            <option value="🧛">🧛</option>
+            <option value="🧑‍🦼">🧑‍🦼</option>
+            <option value="🦧">🦧</option>
+            <option value="🦊">🦊</option>
+            <option value="🐖">🐖</option>
+            <option value="☃️">☃️</option>
+            <option value="🖕">🖕</option>
+            <option value="👶">👶</option>
           </select>
         </div>
       </div>
