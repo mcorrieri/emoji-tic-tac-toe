@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button } from "semantic-ui-react";
+import { useHistory } from "react-router";
 
 function Game() {
   const emojiList = [
@@ -32,6 +34,7 @@ function Game() {
   const [emoji1, setEmoji1] = useState("");
   const [emoji2, setEmoji2] = useState("");
   const nextSymbol = nextTurn ? emoji1 : emoji2;
+  const history = useHistory();
 
   function Square({ value, onClick }) {
     return (
@@ -119,6 +122,10 @@ function Game() {
     }
   }
 
+  function handleLogout() {
+    history.push("/login");
+  }
+
   return (
     <div>
       <div className="container">
@@ -180,6 +187,7 @@ function Game() {
           </select>
         </div>
       </div>
+      <Button onClick={handleLogout}>Logout</Button>
     </div>
   );
 }
