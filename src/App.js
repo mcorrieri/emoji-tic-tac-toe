@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Game from "./Components/Game";
 import Users from "./Users";
-import db from "./lib/firebase";
+import db from "./Components/firebase";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { Switch, Route } from "react-router";

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Input, Form, Button } from "semantic-ui-react";
 import { useHistory } from "react-router";
+import db from "./firebase";
 
 function Login() {
   const history = useHistory();
+  const [users, setUsers] = useState([]);
+
+  //   might have to move this to APP?
+  useEffect(() => {
+    db.collection("users").onSnapshot((snapshot) =>
+      setUsers(snapshot.docs.map((doc) => doc.data()))
+    );
+  }, []);
+  console.log(users);
 
   const handleSignupClick = () => {
     history.push("/signup");
