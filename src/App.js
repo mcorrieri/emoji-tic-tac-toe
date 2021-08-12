@@ -6,9 +6,13 @@ import db from "./Components/firebase";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { Switch, Route } from "react-router";
+import firebaseui from "firebaseui";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const firebase = require("firebase");
+  // const ui = require("firebaseui");
+  const user = true;
 
   useEffect(() => {
     db.collection("users")
@@ -22,18 +26,26 @@ function App() {
       });
   }, []);
 
+  // ui.start("#firebaseui-auth-container", {
+  //   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+  //   // Other config options...
+  // });
+
   return (
     <div className="App-title">
       <Switch>
-        <Route exact path="/login">
-          <Login />
-        </Route>
+        {user ? (
+          <Route exact path="/home">
+            <h1>Emoji Tic Tac Toe!</h1>
+            <Game />
+          </Route>
+        ) : (
+          <Route exact path="/login">
+            <Login />
+          </Route>
+        )}
         <Route exact path="/signup">
           <Signup />
-        </Route>
-        <Route exact path="/home">
-          <h1>Emoji Tic Tac Toe!</h1>
-          <Game />
         </Route>
         {/* <Users /> */}
       </Switch>

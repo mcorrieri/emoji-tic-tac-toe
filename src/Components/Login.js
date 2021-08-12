@@ -6,6 +6,9 @@ import db from "./firebase";
 function Login() {
   const history = useHistory();
   const [users, setUsers] = useState([]);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [error, setError] = useState(null);
 
   //   might have to move this to APP?
   useEffect(() => {
