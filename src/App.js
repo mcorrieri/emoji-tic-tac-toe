@@ -34,16 +34,16 @@ function App() {
   return (
     <div className="App-title">
       <Switch>
-        {user ? (
-          <Route exact path="/home">
-            <h1>Emoji Tic Tac Toe!</h1>
-            <Game />
-          </Route>
-        ) : (
-          <Route exact path="/login">
-            <Login />
-          </Route>
-        )}
+        {/* {user ? ( */}
+        <Route exact path="/home">
+          <h1>Emoji Tic Tac Toe!</h1>
+          <Game />
+        </Route>
+        {/* ) : ( */}
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        {/* )} */}
         <Route exact path="/signup">
           <Signup />
         </Route>
