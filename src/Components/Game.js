@@ -187,7 +187,7 @@ function Game() {
           </select>
         </div>
       </div>
-      <Button onClick={handleLogout}>Logout</Button>
+      {/* <Button onClick={handleLogout}>Logout</Button> */}
     </div>
   );
 }
